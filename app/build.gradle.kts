@@ -17,7 +17,7 @@ android {
         buildConfigField(
             "String",
             "MANIFEST_URL",
-            "\"https://raw.githubusercontent.com/tuanvu1202/vnrp-mobile/main/test-cdn/cache/core/test.txt\""
+            "\"https://raw.githubusercontent.com/tuanvu1202/vnrp-mobile/main/test-cdn/manifest.json\""
         )
         buildConfigField(
             "String",
