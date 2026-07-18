@@ -1,9 +1,9 @@
 {
-  "version": "vnrp-cache-test-3",
+  "version": "cache-2e237d815767",
   "files": [
     {
       "path": "core/test.txt",
-      "url": "https://raw.githubusercontent.com/tuanvu1202/vnrp-mobile/main/test-cdn/cache/core/test.txt?v=3",
+      "url": "https://raw.githubusercontent.com/tuanvu1202/vnrp-mobile/2e237d815767b151fb05ed6e0454ac99eecc25a8/test-cdn/cache/core/test.txt",
       "size": 20,
       "sha256": "fac169fe6e722a2345e5bcf080592dc8e7a15c52a10d6cb2f1e0902ca14cad0f"
     }
