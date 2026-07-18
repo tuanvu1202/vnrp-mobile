@@ -1,0 +1,67 @@
+name: Generate Cache Manifest
+
+on:
+  # Cho phép bấm chạy thủ công trong tab Actions
+  workflow_dispatch:
+
+  # Tự chạy khi có file cache thay đổi
+  push:
+    branches:
+      - main
+    paths:
+      - "test-cdn/cache/**"
+      - "tools/generate_manifest.py"
+      - ".github/workflows/generate-cache-manifest.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-cache-manifest
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    name: Generate manifest.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate manifest
+        shell: bash
+        run: |
+          VERSION="cache-${GITHUB_SHA:0:12}"
+
+          python tools/generate_manifest.py \
+            --root test-cdn/cache \
+            --base-url "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/test-cdn/cache" \
+            --version "$VERSION" \
+            --output test-cdn/manifest.json
+
+          echo "===== manifest.json ====="
+          cat test-cdn/manifest.json
+
+      - name: Commit generated manifest
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add test-cdn/manifest.json
+
+          if git diff --cached --quiet; then
+            echo "Manifest không thay đổi."
+            exit 0
+          fi
+
+          git commit -m "chore(cache): generate manifest [skip ci]"
+          git push origin HEAD:main
