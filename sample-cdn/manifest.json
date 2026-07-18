@@ -1,0 +1,11 @@
+{
+  "version": "2026.07.18.1",
+  "files": [
+    {
+      "path": "core/readme.txt",
+      "url": "https://cdn.example.com/mobile/cache/core/readme.txt",
+      "size": 128,
+      "sha256": "e841a4636f60bf96d6941ccc45e945de5032f1896e3ae85d1e80cbf2e8b67ce9"
+    }
+  ]
+}
