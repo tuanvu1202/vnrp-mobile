@@ -22,7 +22,7 @@ android {
         buildConfigField(
             "String",
             "GAME_PACKAGE",
-            "\"com.rockstargames.gtasa\""
+            "\"ru.zdevs.zarchiver\""
         )
     }
 
