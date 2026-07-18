@@ -1,1 +1,1 @@
-VNRP cache test OK
+VNRP cache update OK
